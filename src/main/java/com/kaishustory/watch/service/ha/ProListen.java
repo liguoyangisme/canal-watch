@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
+ * 数据变更事件处理
  * @author liguoyang
  * @create 2018-05-06 下午5:24
  **/
@@ -19,18 +20,40 @@ import java.util.List;
 @TableListener(database = "ha",table = "pro")
 public class ProListen implements InsertListener,UpdateListener,DeleteListener{
 
+    /**
+     * 新增事件处理
+     * @param database 数据库
+     * @param table 表名
+     * @param columns 列
+     * @return
+     */
     @Override
     public boolean insertHandle(String database, String table, List<CanalEntry.Column> columns) {
         log.info("新增事件");
         return true;
     }
 
+    /**
+     * 修改事件处理
+     * @param database 数据库
+     * @param table 表名
+     * @param beforeColumns 修改前列
+     * @param afterColumns 修改后列
+     * @return
+     */
     @Override
     public boolean updateHandle(String database, String table, List<CanalEntry.Column> beforeColumns, List<CanalEntry.Column> afterColumns) {
         log.info("修改事件");
         return true;
     }
 
+    /**
+     * 删除事件处理å
+     * @param database 数据库
+     * @param table 表名
+     * @param columns 列
+     * @return
+     */
     @Override
     public boolean deleteHandle(String database, String table, List<CanalEntry.Column> columns) {
         log.info("删除事件");
